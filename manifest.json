@@ -1,0 +1,40 @@
+{
+  "name" : "Shut up and cast",
+  "version" : "1.0.1",
+  "description" : "Adds a page content to various sites to push video files to your Chromecast",
+  "background" : {
+    "scripts": ["background.js", "jquery-1.7.2.min.js"]
+  },
+  "icons": { "128": "switch128.png" },
+  "homepage_url": "http://theshybulb.com",
+  "page_action" :
+  {
+    "default_icon" : "switch512.png",
+    "default_title" : "Found a video link on this page!"
+  },
+  "permissions": [
+    "http://*/",
+    "storage",
+    "tabs"
+  ],
+  "content_scripts" : [
+    {
+      "matches" : [
+        "http://bestreams.net/*",
+        "http://www.einthusan.com/*",
+        "https://www.einthusan.com/*",
+        "http://allmyvideos.net/*",
+        "https://allmyvideos.net/*",
+        "http://vidto.me/*",
+        "http://played.to/*",
+        "http://megafiles.se/*",
+        "http://gorillavid.in/*",
+        "http://vodmine.com/*"
+      ],
+      "js" : ["contentscript.js"],
+      "run_at" : "document_end",
+      "all_frames" : true
+    }
+  ],
+  "manifest_version": 2
+}
