@@ -25,6 +25,8 @@ function findVideoLink ()
   var bestreams = /bestreams/;
   var gorillavid = /gorillavid/;
   var vodmine = /vodmine/;
+  var ishared = /ishared/;
+  var thevideo = /thevideo/;
   
   if(allmyv.test(url))
       regex = /"file" : "(.+?)"/;
@@ -34,7 +36,10 @@ function findVideoLink ()
       regex = /file: "(.+?)"/;
   else if(vodmine.test(url))
       regex = /<source src="(.+?\.mp4)"/;
-  
+  else if(ishared.test(url))
+      regex = /path:"(.+?)"/; 
+  else if(thevideo.test(url))
+      regex = /label: '480p', file: '(.+?)'/;
   // Test the text of the body element against our regular expression.
   if (regex.test(document.body.innerHTML)) {
     // The regular expression produced a match, so notify the background page.
