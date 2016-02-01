@@ -1,12 +1,12 @@
 {
   "name" : "Shut up and cast",
-  "version" : "1.0.2",
+  "version" : "1.0.3",
   "description" : "Adds a page content to various sites to push video files to your Chromecast",
   "background" : {
     "scripts": ["background.js", "jquery-1.7.2.min.js"]
   },
   "icons": { "128": "switch128.png" },
-  "homepage_url": "http://theshybulb.com",
+  "homepage_url": "http://theshybulb.com/justcast.html",
   "page_action" :
   {
     "default_icon" : "switch512.png",
@@ -31,7 +31,8 @@
         "http://gorillavid.in/*",
         "http://vodmine.com/*",
 	"http://ishared.eu/*",
-	"http://thevideo.me/*"
+	"http://thevideo.me/*",
+        "http://vidzi.tv/*"
       ],
       "js" : ["contentscript.js"],
       "run_at" : "document_end",
