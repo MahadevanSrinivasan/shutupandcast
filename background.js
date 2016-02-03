@@ -21,23 +21,12 @@ function onRequest(request, sender, sendResponse) {
 chrome.extension.onRequest.addListener(onRequest);
 
 chrome.pageAction.onClicked.addListener(function postData() {
-  url = "http://theshybulb.com/justcast.html";
-  data = {"videoLink": videoLink};
+  url = "http://theshybulb.com/justcast.html?";
+  var params = [];
+  params.push(encodeURIComponent("videoLink") + "=" + encodeURIComponent(videoLink));
+  url = url + params.join("&");
+  console.log(url);
   chrome.tabs.create(
-    { url: chrome.runtime.getURL("post.html") },
-    function(tab) {
-      var handler = function(tabId, changeInfo) {
-        if(tabId === tab.id && changeInfo.status === "complete"){
-          chrome.tabs.onUpdated.removeListener(handler);
-          chrome.tabs.sendMessage(tabId, {url: url, data: data});
-        }
-      };
-
-      // in case we're faster than page load (usually):
-      chrome.tabs.onUpdated.addListener(handler);
-      // just in case we're too late with the listener:
-      chrome.tabs.sendMessage(tab.id, {url: url, data: data});
-    }
-  );  
+    { url: url }
+  );
 });
-
