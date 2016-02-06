@@ -5,6 +5,7 @@
  */
  
 var jsInitChecktimer;
+var msg = null;
 window.addEventListener ("load", waitForPageLoad, false);
 
 function waitForPageLoad (evt)
@@ -28,6 +29,7 @@ function findVideoLink ()
   var ishared = /ishared/;
   var thevideo = /thevideo/;
   var vidzi = /vidzi/;
+  msg = null;
   
   if(allmyv.test(url))
       regex = /"file" : "(.+?)"/;
@@ -41,12 +43,20 @@ function findVideoLink ()
       regex = /path:"(.+?)"/;
   else if(vidzi.test(url))
       regex = /file: "(.+?\.mp4)"/; 
-  else if(thevideo.test(url))
-      regex = /label: '480p', file: '(.+?)'/;
+  else if(thevideo.test(url)) {
+      regex = /sources: (\[.+?\])/;
+      var links = regex.exec(document.body.innerHTML);
+      regexl = /file: ('.+?')/g;
+      while((myArray = regexl.exec(links)) !== null) { 
+        msg = myArray;
+      }
+  }
   // Test the text of the body element against our regular expression.
   if (regex.test(document.body.innerHTML)) {
+    if(!msg)
+      msg = regex.exec(document.body.innerHTML);
     // The regular expression produced a match, so notify the background page.
-      chrome.extension.sendRequest({msg:regex.exec(document.body.innerHTML), url:url, title:""}, function(response) {});
+      chrome.extension.sendRequest({msg:msg, url:url, title:""}, function(response) {});
   } else {
     // No match was found.
   }

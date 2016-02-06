@@ -1,6 +1,6 @@
 {
   "name" : "Shut up and cast",
-  "version" : "1.0.4",
+  "version" : "1.0.5",
   "description" : "Adds a page content to various sites to push video files to your Chromecast",
   "background" : {
     "scripts": ["background.js", "jquery-1.7.2.min.js"]
@@ -30,8 +30,8 @@
         "http://megafiles.se/*",
         "http://gorillavid.in/*",
         "http://vodmine.com/*",
-	"http://ishared.eu/*",
-	"http://thevideo.me/*",
+      	"http://ishared.eu/*",
+      	"http://thevideo.me/*",
         "http://vidzi.tv/*"
       ],
       "js" : ["contentscript.js"],
