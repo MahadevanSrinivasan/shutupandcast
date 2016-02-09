@@ -46,7 +46,7 @@ function findVideoLink ()
   else if(thevideo.test(url)) {
       regex = /sources: (\[.+?\])/;
       var links = regex.exec(document.body.innerHTML);
-      regexl = /file: ('.+?')/g;
+      regexl = /file: '(.+?)'/g;
       while((myArray = regexl.exec(links)) !== null) { 
         msg = myArray;
       }
